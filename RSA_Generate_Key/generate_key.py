@@ -1,4 +1,4 @@
-#!bin/bash
+#!bin/bash/python
 import asyncio
 from Crypto.PublicKey import RSA
 import aiofiles
