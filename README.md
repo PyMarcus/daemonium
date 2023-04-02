@@ -1,4 +1,4 @@
-# RANSONWARE
+# RANSOMWARE
 
 Ransomware is a type of malicious software that infects a computer and restricts users' access to it until a
 ransom is paid to unlock it.(Berkeley Security)
