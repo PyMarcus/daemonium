@@ -19,3 +19,17 @@ RSA is a public-key encryption algorithm that uses modular mathematics and
 properties of prime numbers to encrypt and decrypt data. The algorithm was developed in 1977 by Ron Rivest, Adi Shamir
 and Leonard Adleman, and is widely used to ensure security in digital communications such as banking, e-commerce,
 emails and instant messaging.
+
+### Disclaimer
+
+    this tool is only for academic purposes.
+    ***Do not use it for illegal purposes!***
+
+
+### Encrypt:
+
+    python src/daemonium.py 
+
+### Decrypt:
+
+    python decrypt.py [private_key path]
