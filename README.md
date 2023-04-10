@@ -38,3 +38,12 @@ emails and instant messaging.
 ### PS
 
 This tries to spread over the network if there are weak ssh credentials
+
+
+### Example
+
+
+
+https://user-images.githubusercontent.com/88283829/230916743-9e2131bd-24fa-4189-af0b-f5be421f4d35.mp4
+
+
