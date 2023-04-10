@@ -33,3 +33,8 @@ emails and instant messaging.
 ### Decrypt:
 
     python decrypt.py [private_key path]
+    
+    
+### PS
+
+This tries to spread over the network if there are weak ssh credentials
