@@ -28,7 +28,7 @@ emails and instant messaging.
 
 ### Encrypt:
 
-    python src/daemonium.py 
+    python src/Ransomware/daemonium.py 
 
 ### Decrypt:
 
