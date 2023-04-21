@@ -54,6 +54,15 @@ API RESPONSE AFTER to RECEIVE data:
 
 ![image](https://user-images.githubusercontent.com/88283829/233747570-b95b8175-d3ee-413a-8782-4a3838b1a2ed.png)
 
+Monitor infected hosts:
+
+![image](https://user-images.githubusercontent.com/88283829/233748997-a7fa9a28-f71a-4336-b6da-ff8cbcb90fc7.png)
+
+
+Responsive layout:
+
+![image](https://user-images.githubusercontent.com/88283829/233748959-6a51b045-a63f-4cfe-bd87-3d8965346943.png)
+
 
 video example: 
 
