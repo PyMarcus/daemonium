@@ -50,6 +50,10 @@ Decrypt:
 
 ![image](https://user-images.githubusercontent.com/88283829/233746603-857680ec-0360-47eb-bab5-03719698d83d.png)
 
+API RESPONSE AFTER to RECEIVE data:
+
+![image](https://user-images.githubusercontent.com/88283829/233747570-b95b8175-d3ee-413a-8782-4a3838b1a2ed.png)
+
 
 video example: 
 
