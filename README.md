@@ -42,7 +42,13 @@ This tries to spread over the network if there are weak ssh credentials
 
 ### Example
 
+Encrypt: 
+
 ![image](https://user-images.githubusercontent.com/88283829/233746470-cd5b4f8c-00dc-4d79-8637-120752bb5ae5.png)
+
+Decrypt:
+
+![image](https://user-images.githubusercontent.com/88283829/233746603-857680ec-0360-47eb-bab5-03719698d83d.png)
 
 
 https://user-images.githubusercontent.com/88283829/230916743-9e2131bd-24fa-4189-af0b-f5be421f4d35.mp4
