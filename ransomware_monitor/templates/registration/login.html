@@ -1,4 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>testelogin</h1>
+<section class="vh-100 gradient-custom">
+       {% if form.errors %}
+    <div class="messages">
+        {% for field, errors in form.errors.items %}
+            <p class="error-message text-danger">{{ field }}: {{ errors|join:", " }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem">
+                    <div class="card-body p-5 text-center">
+                        <!--form-->
+                        <form class="mb-md-5 mt-md-4 pb-5" action="{% url 'login' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <h4 class="fw-bold mb-3 text-uppercase">💀Ransomware Monitor💀</h4>
+                            <p class="text-white-50 mb-5">Enter your e-mail and password</p>
+
+                            <!--Inputs-->
+                            <div class="form-outline form-white mb-4">
+                                <input type="email" name="username" id="username" class="form-control form-control-lg" required>
+                                <label class="form-label" for="username">E-mail</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <input type="password" name="password" id="password" class="form-control form-control-lg" required>
+                                <label class="form-label" for="password">Password</label>
+                            </div>
+
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 {% endblock %}

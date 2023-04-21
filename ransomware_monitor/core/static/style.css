@@ -1,0 +1,10 @@
+.navb{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(72,61,139,1) 0%, rgba(255,0,0,1) 100%);
+    font-weight: bold;
+    font-size:1.5rem;
+}
+
+.ifont{
+    font-weight: bold;
+}

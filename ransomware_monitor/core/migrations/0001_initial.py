@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name': 'user',
-                'verbose_name_plural': 'users',
+                'verbose_name_plural': 'core',
                 'abstract': False,
             },
             managers=[
