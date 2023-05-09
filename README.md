@@ -70,7 +70,6 @@ https://user-images.githubusercontent.com/88283829/230916743-9e2131bd-24fa-4189-
 
 Complete functions:
 
-
 https://user-images.githubusercontent.com/88283829/233749372-4a00c2bc-c3fe-4c10-a597-bca2a7625a2b.mp4
 
 
